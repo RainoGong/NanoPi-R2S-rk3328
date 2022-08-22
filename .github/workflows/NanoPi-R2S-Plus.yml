@@ -12,7 +12,7 @@ on:
   #repository_dispatch:
   #workflow_dispatch:
   schedule:
-    - cron: 15 11 * * *
+    - cron: 45 7 * * *
   release:
      types: [published]
   # watch:
@@ -30,7 +30,7 @@ env:
 jobs:
   Build:
     runs-on: ubuntu-latest
-    if: github.repository == 'DHDAXCW/NanoPi-R2S-rk3328'
+    #if: github.repository == 'DHDAXCW/NanoPi-R2S-rk3328'
     outputs:
       OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
       PLATFORM: ${{ steps.compile.outputs.PLATFORM }}
