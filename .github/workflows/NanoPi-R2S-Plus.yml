@@ -12,7 +12,7 @@ on:
   #repository_dispatch:
   #workflow_dispatch:
   schedule:
-    - cron: 59 00 * * *
+    - cron: 59 01 * * *
   release:
      types: [published]
   # watch:
