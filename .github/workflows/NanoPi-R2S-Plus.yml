@@ -12,7 +12,7 @@ on:
   #repository_dispatch:
   #workflow_dispatch:
   schedule:
-    - cron: 45 7 * * *
+    - cron: 59 00 * * *
   release:
      types: [published]
   # watch:
@@ -113,11 +113,11 @@ jobs:
       run: |
         cd $OPENWRTROOT
         echo -e "$(nproc) thread compile"
-        make tools/compile -j$(nproc) || make tools/compile -j1
-        make toolchain/compile -j$(nproc) || make toolchain/compile -j1
-        make target/compile -j$(nproc) || make target/compile -j1 IGNORE_ERRORS=1
+        make tools/compile -j$(nproc) || make tools/compile -j4
+        make toolchain/compile -j$(nproc) || make toolchain/compile -j4
+        make target/compile -j$(nproc) || make target/compile -j4 IGNORE_ERRORS=1
         make diffconfig
-        make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j1 IGNORE_ERRORS=1
+        make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j4 IGNORE_ERRORS=1
         make package/index
         cd $OPENWRTROOT/bin/packages/*
         PLATFORM=$(basename `pwd`)
